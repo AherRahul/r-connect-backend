@@ -6,7 +6,7 @@
 
 
 
-# r-connect-backend App Backend
+# R-Connect App Backend
 
 ## Features
 1. Signup and signin authentication
