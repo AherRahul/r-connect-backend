@@ -5,7 +5,20 @@
   "main": "app.js",
   "scripts": {
     "dev:win": "nodemon -r tsconfig-paths/register src/app.ts | .\\node_modules\\.bin\\bunyan",
-    "dev:mac": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan"
+    "lint:checkWin": "eslint \"src/**/*.ts\"",
+    "lint:fixWin": "eslint \"src/**/*.ts\" --fix",
+    "prettier:checkWin": "prettier --check \"src/**/*.{ts,json}\"",
+    "prettier:fixWin": "prettier --write \"src/**/*.{ts,json}\"",
+
+
+
+
+
+    "dev:mac": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
+    "lint:checkMac": "eslint 'src/**/*.ts'",
+    "lint:fixMac": "eslint 'src/**/*.ts' --fix",
+    "prettier:checkMac": "prettier --check 'src/**/*.{ts,json}'",
+    "prettier:fixMac": "prettier --write 'src/**/*.{ts,json}'"
   },
   "author": "rahul aher",
   "license": "ISC",

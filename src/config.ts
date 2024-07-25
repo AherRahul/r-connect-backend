@@ -9,10 +9,11 @@ class Config {
   public NODE_ENV: string | undefined;
   public SECRET_KEY_ONE: string | undefined;
   public SECRET_KEY_TWO: string | undefined;
-  public CLIENT_URL: string | undefined; 
+  public CLIENT_URL: string | undefined;
   public REDIS_HOST: string | undefined;
 
-  private readonly DEFAULT_DATABASE_URL = 'mongodb://localhost:27017/chattyapp-backend';
+  private readonly DEFAULT_DATABASE_URL =
+    'mongodb://localhost:27017/chattyapp-backend';
 
   constructor() {
     this.DATABASE_URL = process.env.DATABASE_URL || this.DEFAULT_DATABASE_URL;
@@ -29,12 +30,12 @@ class Config {
   }
 
   public validateConfig(): void {
-    for(const [key, value] of Object.entries(this)) {
-        if(value === undefined) {
-            throw new Error(`configuration ${key} is undefiend.`);
-        }
+    for (const [key, value] of Object.entries(this)) {
+      if (value === undefined) {
+        throw new Error(`configuration ${key} is undefiend.`);
+      }
     }
   }
-};
+}
 
 export const config: Config = new Config();
