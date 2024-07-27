@@ -4,16 +4,13 @@
   "description": "r-connect app backend",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon ./build/app.js",
+    "build": "tsc -p .",
     "dev:win": "nodemon -r tsconfig-paths/register src/app.ts | .\\node_modules\\.bin\\bunyan",
     "lint:checkWin": "eslint \"src/**/*.ts\"",
     "lint:fixWin": "eslint \"src/**/*.ts\" --fix",
     "prettier:checkWin": "prettier --check \"src/**/*.{ts,json}\"",
     "prettier:fixWin": "prettier --write \"src/**/*.{ts,json}\"",
-
-
-
-
-
     "dev:mac": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:checkMac": "eslint 'src/**/*.ts'",
     "lint:fixMac": "eslint 'src/**/*.ts' --fix",
@@ -25,6 +22,7 @@
   "dependencies": {
     "@socket.io/redis-adapter": "^8.3.0",
     "bunyan": "^1.8.15",
+    "cloudinary": "^2.3.1",
     "compression": "^1.7.4",
     "cookie-session": "^2.1.0",
     "cors": "^2.8.5",
@@ -34,11 +32,13 @@
     "helmet": "^7.1.0",
     "hpp": "^0.2.3",
     "http-status-codes": "^2.3.0",
+    "joi": "^17.13.3",
     "mongoose": "^8.5.1",
     "redis": "^4.6.15",
     "socket.io": "^4.7.5",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "typescript-transform-paths": "^3.4.7"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.11",

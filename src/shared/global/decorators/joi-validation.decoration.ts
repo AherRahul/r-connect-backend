@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { JoiRequestValidationError } from '@global/helpers/error-handler';
+import { JoiRequestValidationError } from '../helpers/error-handler';
 import { Request } from 'express';
 import { ObjectSchema } from 'joi';
 
