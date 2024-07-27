@@ -4,16 +4,13 @@
   "description": "r-connect app backend",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon ./build/app.js",
     "dev:win": "nodemon -r tsconfig-paths/register src/app.ts | .\\node_modules\\.bin\\bunyan",
     "lint:checkWin": "eslint \"src/**/*.ts\"",
     "lint:fixWin": "eslint \"src/**/*.ts\" --fix",
     "prettier:checkWin": "prettier --check \"src/**/*.{ts,json}\"",
     "prettier:fixWin": "prettier --write \"src/**/*.{ts,json}\"",
-
-
-
-
-
+    "build": "tsc -p .",
     "dev:mac": "nodemon -r tsconfig-paths/register src/app.ts | ./node_modules/.bin/bunyan",
     "lint:checkMac": "eslint 'src/**/*.ts'",
     "lint:fixMac": "eslint 'src/**/*.ts' --fix",
@@ -38,7 +35,8 @@
     "redis": "^4.6.15",
     "socket.io": "^4.7.5",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "typescript-transform-paths": "^3.4.7"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.11",
