@@ -20,10 +20,12 @@ import 'express-async-errors';
 import Logger from 'bunyan';
 import { config } from './config';
 import applicationRoutes from './routes';
-import {
-  CustomError,
-  IErrorResponse,
-} from './shared/global/helpers/error-handler';
+import { IErrorResponse, CustomError } from './shared/global/helpers/error-handler';
+
+
+
+
+
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
