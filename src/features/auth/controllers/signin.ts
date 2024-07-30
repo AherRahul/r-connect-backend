@@ -8,7 +8,12 @@ import { loginSchema } from '../schemes/signin';
 import { IAuthDocument } from '../../auth/interfaces/auth.interface';
 import { BadRequestError } from '../../../shared/global/helpers/error-handler';
 import { userService } from '../../../shared/services/db/user.service';
-import { IUserDocument } from '../../user/interfaces/user.interface';
+import { IResetPasswordParams, IUserDocument } from '../../user/interfaces/user.interface';
+// import { forgotPasswordTemplate } from '../../../shared/services/emails/templates/forgot-password/forgot-password';
+import { emailQueue } from '../../../shared/services/queues/email.queue';
+import moment from 'moment';
+import publicIP from 'ip';
+import { resetPasswordTemplate } from '../../../shared/services/emails/templates/reset-password/reset-password-template';
 
 export class SignIn {
   @joiValidation(loginSchema)
@@ -40,6 +45,16 @@ export class SignIn {
       },
       config.JWT_TOKEN!,
     );
+
+    // const templateParams: IResetPasswordParams = {
+    //   username: existingUser.username!,
+    //   email: existingUser.email!,
+    //   ipaddress: publicIP.address(),
+    //   date: moment().format('DD/MM/YYY HH:mm')
+    // };
+    // // const resetLink = `${config.CLIENT_URL}/reset-password?token=12345678`;
+    // const template: string = resetPasswordTemplate.passwordResetConfirmationTemplate(templateParams);
+    // emailQueue.addEmailJob('forgotPasswordEmail', { template, receiverEmail: 'rahulvijayaher@gmail.com', subject: 'Password reset comfirmation your password'});
 
     req.session = { jwt: userJwt };
 
