@@ -7,6 +7,8 @@ class AuthService {
     await AuthModel.create(data);
   }
 
+
+  // update the user by passwordToken
   public async updatePasswordToken(
     authId: string,
     token: string,
@@ -21,6 +23,8 @@ class AuthService {
     );
   }
 
+
+  // fetching the user by email ID or by user-name
   public async getUserByUsernameOrEmail(
     username: string,
     email: string,
@@ -37,6 +41,8 @@ class AuthService {
     return user;
   }
 
+
+  // fetching the auth user by username
   public async getAuthUserByUsername(username: string): Promise<IAuthDocument> {
     const user: IAuthDocument = (await AuthModel.findOne({
       username: Helpers.firstLetterUppercase(username),
@@ -44,6 +50,8 @@ class AuthService {
     return user;
   }
 
+
+  // fetching the auth user by email
   public async getAuthUserByEmail(email: string): Promise<IAuthDocument> {
     const user: IAuthDocument = (await AuthModel.findOne({
       email: Helpers.lowerCase(email),
@@ -51,11 +59,15 @@ class AuthService {
     return user;
   }
 
+
+  // fetching the auth user by passwordToken
   public async getAuthUserByPasswordToken(
     token: string,
   ): Promise<IAuthDocument> {
     const user: IAuthDocument = (await AuthModel.findOne({
+      // if token exist or not
       passwordResetToken: token,
+      // checking the date is greater than date.now (valid token) if so then it's return else no doc return
       passwordResetExpires: { $gt: Date.now() },
     }).exec()) as IAuthDocument;
     return user;
