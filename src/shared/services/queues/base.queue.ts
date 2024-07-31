@@ -10,7 +10,7 @@ import {
   IEmailJob,
   IUserJob,
 } from '../../../features/user/interfaces/user.interface';
-// import { IPostJobData } from '@post/interfaces/post.interface';
+import { IPostJobData } from '../../../features/post/interfaces/post.interface';
 // import { IReactionJob } from '@reaction/interfaces/reaction.interface';
 // import { ICommentJob } from '@comment/interfaces/comment.interface';
 // import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/follower.interface';
@@ -21,7 +21,7 @@ import {
 type IBaseJobData =
   | IAuthJob
   | IEmailJob
-  // | IPostJobData
+  | IPostJobData
   // | IReactionJob
   // | ICommentJob
   // | IFollowerJobData

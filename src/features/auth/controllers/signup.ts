@@ -35,6 +35,8 @@ export class SignUp {
       throw new BadRequestError('Invalid credentials');
     }
 
+    // we are purposlyfully generating this ID, because we want to store the data into redis against that ID.
+    // if we don't want to save the data into redis the mongoDB can create ID for us and store the data.
     const authObjectId: ObjectId = new ObjectId();
     const userObjectId: ObjectId = new ObjectId();
     const uId = `${Helpers.generateRandomIntegers(12)}`;
@@ -52,6 +54,9 @@ export class SignUp {
     });
 
     // upload profile picture on cloudinary
+    // calling cloudinary upload method to upload image
+    // we are passing our own public_id, we are not setting cloudinary generated public_id because need to fetch the image with 'userObjectId'
+    // if api not returns public_id then we are throwing an error saying 'File upload: Error occurred. Try again.'
     const result: UploadApiResponse = (await uploads(
       avatarImage,
       `${userObjectId}`,
