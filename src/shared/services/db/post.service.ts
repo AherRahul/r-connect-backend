@@ -7,7 +7,6 @@ import { Query, UpdateQuery } from 'mongoose';
 class PostService {
 
 
-
   // saving post to DB
   public async addPostToDB(userId: string, createdPost: IPostDocument): Promise<void> {
     // saving the post in the DB
