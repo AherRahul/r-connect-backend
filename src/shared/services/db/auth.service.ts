@@ -14,6 +14,8 @@ class AuthService {
     token: string,
     tokenExpiration: number,
   ): Promise<void> {
+
+    // taking the authId and updating passwordResetToken and passwordResetExpires
     await AuthModel.updateOne(
       { _id: authId },
       {
@@ -29,33 +31,47 @@ class AuthService {
     username: string,
     email: string,
   ): Promise<IAuthDocument> {
+
+    // creating the query
     const query = {
       $or: [
         { username: Helpers.firstLetterUppercase(username) },
         { email: Helpers.lowerCase(email) },
       ],
     };
+
+    // executing the query to find user by username or by email
     const user: IAuthDocument = (await AuthModel.findOne(
       query,
     ).exec()) as IAuthDocument;
+
+    // returning user
     return user;
   }
 
 
   // fetching the auth user by username
   public async getAuthUserByUsername(username: string): Promise<IAuthDocument> {
+
+    // executing the query to find user by username
     const user: IAuthDocument = (await AuthModel.findOne({
       username: Helpers.firstLetterUppercase(username),
     }).exec()) as IAuthDocument;
+
+    // returning the user
     return user;
   }
 
 
   // fetching the auth user by email
   public async getAuthUserByEmail(email: string): Promise<IAuthDocument> {
+
+    // executing the query to find user by email
     const user: IAuthDocument = (await AuthModel.findOne({
       email: Helpers.lowerCase(email),
     }).exec()) as IAuthDocument;
+
+    // returning the user
     return user;
   }
 

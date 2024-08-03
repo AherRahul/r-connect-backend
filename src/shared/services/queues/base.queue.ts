@@ -11,8 +11,8 @@ import {
   IUserJob,
 } from '../../../features/user/interfaces/user.interface';
 import { IPostJobData } from '../../../features/post/interfaces/post.interface';
-// import { IReactionJob } from '@reaction/interfaces/reaction.interface';
-// import { ICommentJob } from '@comment/interfaces/comment.interface';
+import { IReactionJob } from '../../../features/reactions/interfaces/reaction.interface';
+import { ICommentJob } from '../../../features/comment/interfaces/comment.interface';
 // import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/follower.interface';
 // import { INotificationJobData } from '@notification/interfaces/notification.interface';
 // import { IFileImageJobData } from '@image/interfaces/image.interface';
@@ -22,8 +22,8 @@ type IBaseJobData =
   | IAuthJob
   | IEmailJob
   | IPostJobData
-  // | IReactionJob
-  // | ICommentJob
+  | IReactionJob
+  | ICommentJob
   // | IFollowerJobData
   // | IBlockedUserJobData
   // | INotificationJobData
