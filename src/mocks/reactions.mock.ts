@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { AuthPayload } from '../features/auth/interfaces/auth.interface';
 import { IReactionDocument, IReactions } from '../features/reactions/interfaces/reaction.interface';
 import { IJWT } from './auth.mock';
-import { ICommentDocument, ICommentNameList } from '../features/comment/interfaces/comment.interface';
+import { ICommentDocument, ICommentNameList } from '../features/comments/interfaces/comment.interface';
 
 export const reactionMockRequest = (sessionData: IJWT, body: IBody, currentUser?: AuthPayload | null, params?: IParams) => ({
   session: sessionData,
