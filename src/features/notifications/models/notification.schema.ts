@@ -1,5 +1,5 @@
 import { INotificationDocument, INotification } from '../interfaces/notification.interface';
-// import { notificationService } from '@service/db/notification.service';
+import { notificationService } from '../../../shared/services/db/notification.service';
 import mongoose, { model, Model, Schema } from 'mongoose';
 
 const notificationSchema: Schema = new Schema({
@@ -52,8 +52,8 @@ notificationSchema.methods.insertNotification = async function (body: INotificat
     gifUrl
   });
   try {
-    // const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
-    // return notifications;
+    const notifications: INotificationDocument[] = await notificationService.getNotifications(userTo);
+    return notifications;
   } catch (error) {
     return error;
   }

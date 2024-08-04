@@ -23,6 +23,7 @@ import applicationRoutes from './routes';
 import { IErrorResponse, CustomError } from './shared/global/helpers/error-handler';
 import { SocketIOPostHandler } from './shared/scokets/post';
 import { SocketIOFollowerHandler } from './shared/scokets/follower';
+import { SocketIONotificationHandler } from './shared/scokets/notification';
 
 
 const SERVER_PORT = 5000;
@@ -136,8 +137,10 @@ export class ChattyServer {
   private socketIOConnections(io: Server): void {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
+    const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
 
     postSocketHandler.listen();
     followerSocketHandler.listen();
+    notificationSocketHandler.listen(io);
   }
 }
