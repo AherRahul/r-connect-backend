@@ -2,8 +2,8 @@
 @urlPath = api/v1
 
 ###
-GET {{baseUrl}}/{{urlPath}}/user/all/<page-number>
-# GET {{baseUrl}}/{{urlPath}}/user/all/1
+# GET {{baseUrl}}/{{urlPath}}/user/all/<page-number>
+GET {{baseUrl}}/{{urlPath}}/user/all/1
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -15,13 +15,15 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/user/profile/<userId>
+# GET {{baseUrl}}/{{urlPath}}/user/profile/<userId>
+GET {{baseUrl}}/{{urlPath}}/user/profile/66b38c4bcb36be995b7f14e8
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/user/profile/posts/<username>/<userId>/<uId>
+# GET {{baseUrl}}/{{urlPath}}/user/profile/posts/<username>/<userId>/<uId>
+GET {{baseUrl}}/{{urlPath}}/user/profile/posts/Pranav21/66b38c4bcb36be995b7f14e8/574055719294
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -33,7 +35,8 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/user/profile/search/<search-username-query>
+# GET {{baseUrl}}/{{urlPath}}/user/profile/search/<search-username-query>
+GET {{baseUrl}}/{{urlPath}}/user/profile/search/Pranav21
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -45,9 +48,9 @@ Accept: application/json
 withCredentials: true
 
 {
-  "currentPassword": "",
-  "newPassword": "",
-  "confirmPassword": ""
+  "currentPassword": "admin123",
+  "newPassword": "admin456",
+  "confirmPassword": "admin456"
 }
 
 ###
@@ -57,10 +60,10 @@ Accept: 'application/json'
 withCredentials: true
 
 {
-  "quote": "",
-  "work": "",
-  "school": "",
-  "location": ""
+  "quote": "Learn, Build, Share",
+  "work": "Morningstar, Mumbai, India",
+  "school": "Mumbai University",
+  "location": "Mumbai, India"
 }
 
 ###
@@ -70,9 +73,9 @@ Accept: 'application/json'
 withCredentials: true
 
 {
-  "instagram": "",
-  "twitter": "",
-  "facebook": "",
+  "instagram": "https://www.instagram.com/me_rahulaher",
+  "twitter": "https://x.com/rahulvijayaher/",
+  "facebook": "https://www.facebook.com/rahul.aher.5205/",
   "youtube": ""
 }
 
