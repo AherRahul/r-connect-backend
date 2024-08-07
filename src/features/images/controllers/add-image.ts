@@ -21,7 +21,7 @@ export class Add {
     if (!result?.public_id) {
       throw new BadRequestError('File upload: Error occurred. Try again.');
     }
-    const url = `https://res.cloudinary.com/duojkrgue/image/upload/v${result.version}/${result.public_id}`;
+    const url = `https://res.cloudinary.com/duojkrgue/image/upload/v${result.version}/r-connect/${result.public_id}`;
     const cachedUser: IUserDocument = (await userCache.updateSingleUserItemInCache(
       `${req.currentUser!.userId}`,
       'profilePicture',
