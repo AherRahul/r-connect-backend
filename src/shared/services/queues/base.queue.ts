@@ -13,9 +13,9 @@ import {
 import { IPostJobData } from '../../../features/post/interfaces/post.interface';
 import { IReactionJob } from '../../../features/reactions/interfaces/reaction.interface';
 import { ICommentJob } from '../../../features/comments/interfaces/comment.interface';
-// import { IBlockedUserJobData, IFollowerJobData } from '@follower/interfaces/follower.interface';
+import { IBlockedUserJobData, IFollowerJobData } from '../../../features/followers/interfaces/follower.interface';
 import { INotificationJobData } from '../../../features/notifications/interfaces/notification.interface';
-// import { IFileImageJobData } from '@image/interfaces/image.interface';
+import { IFileImageJobData } from '../../../features/images/interfaces/image.interface';
 // import { IChatJobData, IMessageData } from '@chat/interfaces/chat.interface';
 
 type IBaseJobData =
@@ -24,10 +24,10 @@ type IBaseJobData =
   | IPostJobData
   | IReactionJob
   | ICommentJob
-  // | IFollowerJobData
-  // | IBlockedUserJobData
+  | IFollowerJobData
+  | IBlockedUserJobData
   | INotificationJobData
-  // | IFileImageJobData
+  | IFileImageJobData
   // | IChatJobData
   // | IMessageData
   | IUserJob;
