@@ -8,7 +8,8 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/chat/message/user/<receiverId>
+# GET {{baseUrl}}/{{urlPath}}/chat/message/user/<receiverId>
+GET {{baseUrl}}/{{urlPath}}/chat/message/user/66b38c4bcb36be995b7f14e8
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -21,11 +22,11 @@ withCredentials: true
 
 {
   "conversationId": "",
-  "receiverId": "",
-  "receiverUsername": "",
-  "receiverAvatarColor": "",
-  "receiverProfilePicture": "<cloudinary-user-profile-picture-url>",
-  "body": "",
+  "receiverId": "66b38c4bcb36be995b7f14e8",
+  "receiverUsername": "Pranav21",
+  "receiverAvatarColor": "red",
+  "receiverProfilePicture": "https://res.cloudinary.com/duojkrgue/image/upload/v1723042893/r-connect/66b38c4bcb36be995b7f14e8",
+  "body": "Hello Pranav",
   "gifUrl": "",
   "isRead": false,
   "selectedImage": ""
@@ -38,8 +39,8 @@ Accept: application/json
 withCredentials: true
 
 {
-  "userOne": "",
-  "userTwo": ""
+  "userOne": "66b38b8dcb36be995b7f14de",
+  "userTwo": "66b38c4bcb36be995b7f14e8"
 }
 
 ###
@@ -60,8 +61,8 @@ Accept: application/json
 withCredentials: true
 
 {
-  "senderId": "",
-  "receiverId": ""
+  "senderId": "66b38b8dcb36be995b7f14de",
+  "receiverId": "66b38c4bcb36be995b7f14e8"
 }
 
 ###
@@ -72,14 +73,15 @@ withCredentials: true
 
 # For this endpoint, the type is either add or remove
 {
-  "conversationId": "",
-  "messageId": "",
-  "reaction": "",
-  "type": ""
+  "conversationId": "66b38d1fcb36be995b7f14f4",
+  "messageId": "66b38d1fcb36be995b7f14f3",
+  "reaction": {"like": 0,"love": 0,"happy": 1,"sad": 0,"wow": 0,"angry": 0},
+  "type": "happy"
 }
 
 ###
-DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/<messageId>/<senderId>/<receiverId>/<type>
+# DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/<messageId>/<senderId>/<receiverId>/<type>
+DELETE {{baseUrl}}/{{urlPath}}/chat/message/mark-as-deleted/66b38d1fcb36be995b7f14f3/66b38b8dcb36be995b7f14de/66b38c4bcb36be995b7f14e8/deleteForMe
 # For this endpoint, the type is either deleteForMe or deleteForEveryone
 Content-Type: application/json
 Accept: application/json

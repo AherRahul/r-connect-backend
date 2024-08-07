@@ -13,6 +13,7 @@ export function uploads(
     cloudinary.v2.uploader.upload(
       file,
       {
+        folder: 'r-connect',
         public_id,
         overwrite,
         invalidate,
@@ -38,6 +39,7 @@ export function videoUpload(
     cloudinary.v2.uploader.upload(
       file,
       {
+        folder: 'r-connect',
         resource_type: 'video',
         chunk_size: 50000,
         public_id,
