@@ -24,6 +24,7 @@ import { IErrorResponse, CustomError } from './shared/global/helpers/error-handl
 import { SocketIOPostHandler } from './shared/scokets/post';
 import { SocketIOFollowerHandler } from './shared/scokets/follower';
 import { SocketIONotificationHandler } from './shared/scokets/notification';
+import { SocketIOImageHandler } from './shared/scokets/image';
 
 
 const SERVER_PORT = 5000;
@@ -138,9 +139,12 @@ export class ChattyServer {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
+
 
     postSocketHandler.listen();
     followerSocketHandler.listen();
     notificationSocketHandler.listen(io);
+    imageSocketHandler.listen(io);
   }
 }
