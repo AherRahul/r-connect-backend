@@ -26,6 +26,7 @@ import { SocketIOFollowerHandler } from './shared/scokets/follower';
 import { SocketIONotificationHandler } from './shared/scokets/notification';
 import { SocketIOImageHandler } from './shared/scokets/image';
 import { SocketIOChatHandler } from './shared/scokets/chat';
+import { SocketIOUserHandler } from './shared/scokets/user';
 
 
 const SERVER_PORT = 5000;
@@ -139,14 +140,14 @@ export class ChattyServer {
   private socketIOConnections(io: Server): void {
     const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
     const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
-    // const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
     const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
     const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
     const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
 
     postSocketHandler.listen();
     followerSocketHandler.listen();
-    // userSocketHandler.listen();
+    userSocketHandler.listen();
     chatSocketHandler.listen();
     notificationSocketHandler.listen(io);
     imageSocketHandler.listen(io);
