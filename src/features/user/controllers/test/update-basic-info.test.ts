@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import { authUserPayload, authMockRequest, authMockResponse } from '@root/mocks/auth.mock';
+import { authUserPayload, authMockRequest, authMockResponse } from '../../../../mocks/auth.mock';
 import { Server } from 'socket.io';
-import * as userServer from '@socket/user';
-import { Edit } from '@user/controllers/update-basic-info';
-import { UserCache } from '@service/redis/user.cache';
-import { userQueue } from '@service/queues/user.queue';
+import * as userServer from '../../../../shared/scokets/user';
+import { Edit } from '../update-basic-info';
+import { UserCache } from '../../../../shared/services/redis/user.cache';
+import { userQueue } from '../../../../shared/services/queues/user.queue';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@socket/user');
-jest.mock('@service/redis/user.cache');
+jest.mock('../../../../shared/services/queues/base.queue');
+jest.mock('../../../../shared/scokets/user');
+jest.mock('../../../../shared/services/redis/user.cache');
 
 Object.defineProperties(userServer, {
   socketIOUserObject: {

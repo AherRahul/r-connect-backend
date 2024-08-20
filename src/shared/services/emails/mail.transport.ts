@@ -1,19 +1,25 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import Logger from 'bunyan';
-import sendGridMail from '@sendgrid/mail';
 import { config } from '../../../config';
 import { BadRequestError } from '../../global/helpers/error-handler';
+import SibApiV3Sdk from 'sib-api-v3-sdk';
 
 interface IMailOptions {
-  from: string;
-  to: string;
+  from: {
+    email: string;
+    name: string;
+  };
+  to: Array<{
+    email: string;
+  }>;
   subject: string;
-  html: string;
+  htmlContent: string;
 }
 
 const log: Logger = config.createLogger('mailOptions');
-sendGridMail.setApiKey(config.SENDGRID_API_KEY!);
+const brevoClient = new SibApiV3Sdk.TransactionalEmailsApi();
+brevoClient.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, config.BREVO_API_KEY!);
 
 class MailTransport {
   public async sendEmail(receiverEmail: string, subject: string, body: string): Promise<void> {
@@ -35,7 +41,7 @@ class MailTransport {
       }
     });
 
-    const mailOptions: IMailOptions = {
+    const mailOptions = {
       from: `R-Connect <${config.SENDER_EMAIL!}>`,
       to: receiverEmail,
       subject,
@@ -53,14 +59,19 @@ class MailTransport {
 
   private async productionEmailSender(receiverEmail: string, subject: string, body: string): Promise<void> {
     const mailOptions: IMailOptions = {
-      from: `R-Connect <${config.SENDER_EMAIL!}>`,
-      to: receiverEmail,
+      from: {
+        email: config.SENDER_EMAIL!,
+        name: 'R-Connect'
+      },
+      to: [{
+        email: receiverEmail,
+      }],
       subject,
-      html: body
+      htmlContent: body
     };
 
     try {
-      await sendGridMail.send(mailOptions);
+      await brevoClient.sendTransacEmail(mailOptions);
       log.info('Production email sent successfully.');
     } catch (error) {
       log.error('Error sending email', error);

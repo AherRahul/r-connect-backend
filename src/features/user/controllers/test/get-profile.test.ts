@@ -1,25 +1,25 @@
 import mongoose from 'mongoose';
 import { Request, Response } from 'express';
-import { authMockRequest, authMockResponse, authUserPayload } from '@root/mocks/auth.mock';
-import { UserCache } from '@service/redis/user.cache';
-import { FollowerCache } from '@service/redis/follower.cache';
-import { existingUser } from '@root/mocks/user.mock';
-import { Get } from '@user/controllers/get-profile';
-import { PostCache } from '@service/redis/post.cache';
-import { postMockData } from '@root/mocks/post.mock';
-import { mockFollowerData } from '@root/mocks/followers.mock';
-import { followerService } from '@service/db/follower.service';
-import { userService } from '@service/db/user.service';
-import { postService } from '@service/db/post.service';
-import { Helpers } from '@global/helpers/helpers';
+import { authMockRequest, authMockResponse, authUserPayload } from '../../../../mocks/auth.mock';
+import { UserCache } from '../../../../shared/services/redis/user.cache';
+import { FollowerCache } from '../../../../shared/services/redis/follower.cache';
+import { existingUser } from '../../../../mocks/user.mock';
+import { Get } from '../get-profile';
+import { PostCache } from '../../../../shared/services/redis/post.cache';
+import { postMockData } from '../../../../mocks/post.mock';
+import { mockFollowerData } from '../../../../mocks/followers.mock';
+import { followerService } from '../../../../shared/services/db/follower.service';
+import { userService } from '../../../../shared/services/db/user.service';
+import { postService } from '../../../../shared/services/db/post.service';
+import { Helpers } from '../../../../shared/global/helpers/helpers';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/post.cache');
-jest.mock('@service/redis/follower.cache');
-jest.mock('@service/redis/user.cache');
-jest.mock('@service/db/user.service');
-jest.mock('@service/db/follower.service');
+jest.mock('../../../../shared/services/queues/base.queue');
+jest.mock('../../../../shared/services/redis/post.cache');
+jest.mock('../../../../shared/services/redis/follower.cache');
+jest.mock('../../../../shared/services/redis/user.cache');
+jest.mock('../../../../shared/services/db/user.service');
+jest.mock('../../../../shared/services/db/follower.service');
 
 describe('Get', () => {
   beforeEach(() => {

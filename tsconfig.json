@@ -25,5 +25,9 @@
     ],
     "paths": {
     }
-  }
+  },
+  "include": [
+    "src/types/sib-api-v3-sdk.d.ts",
+    // ... other includes ...
+  ]
 }

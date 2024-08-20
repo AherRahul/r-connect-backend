@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
-import { chatMockRequest, chatMockResponse } from '@root/mocks/chat.mock';
-import { authUserPayload } from '@root/mocks/auth.mock';
-import { searchedUserMock } from '@root/mocks/user.mock';
-import { Search } from '@user/controllers/search-user';
-import { userService } from '@service/db/user.service';
+import { chatMockRequest, chatMockResponse } from '../../../../mocks/chat.mock';
+import { authUserPayload } from '../../../../mocks/auth.mock';
+import { searchedUserMock } from '../../../../mocks/user.mock';
+import { Search } from '../search-user';
+import { userService } from '../../../../shared/services/db/user.service';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/user.cache');
+jest.mock('../../../../shared/services/queues/base.queue');
+jest.mock('../../../../shared/services/redis/user.cache');
 
 describe('Search', () => {
   beforeEach(() => {

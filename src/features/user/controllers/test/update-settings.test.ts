@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { authUserPayload, authMockRequest, authMockResponse } from '@root/mocks/auth.mock';
-import { UpdateSettings } from '@user/controllers/update-settings';
-import { userQueue } from '@service/queues/user.queue';
-import { UserCache } from '@service/redis/user.cache';
+import { authUserPayload, authMockRequest, authMockResponse } from '../../../../mocks/auth.mock';
+import { UpdateSettings } from '../update-settings';
+import { userQueue } from '../../../../shared/services/queues/user.queue';
+import { UserCache } from '../../../../shared/services/redis/user.cache';
 
 jest.useFakeTimers();
-jest.mock('@service/queues/base.queue');
-jest.mock('@service/redis/user.cache');
+jest.mock('../../../../shared/services/queues/base.queue');
+jest.mock('../../../../shared/services/redis/user.cache');
 
 describe('Settings', () => {
   beforeEach(() => {
