@@ -8,21 +8,13 @@ Accept: application/json
 withCredentials: true
 
 ###
-GET {{baseUrl}}/{{urlPath}}/user/followers/<userId>
+GET {{baseUrl}}/{{urlPath}}/user/followers/66a899e62b3184c27c43c332
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/follow/<followerId>
-Content-Type: application/json
-Accept: application/json
-withCredentials: true
-
-{}
-
-###
-PUT {{baseUrl}}/{{urlPath}}/user/unfollow/<followeeId>/<followerId>
+PUT {{baseUrl}}/{{urlPath}}/user/follow/66a729b97241a71a60d34099
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -30,7 +22,7 @@ withCredentials: true
 {}
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/block/<followerId>
+PUT {{baseUrl}}/{{urlPath}}/user/unfollow/66a729b97241a71a60d34099/66a899e62b3184c27c43c332
 Content-Type: application/json
 Accept: application/json
 withCredentials: true
@@ -38,7 +30,15 @@ withCredentials: true
 {}
 
 ###
-PUT {{baseUrl}}/{{urlPath}}/user/unblock/<followerId>
+PUT {{baseUrl}}/{{urlPath}}/user/block/66a729b97241a71a60d34098
+Content-Type: application/json
+Accept: application/json
+withCredentials: true
+
+{}
+
+###
+PUT {{baseUrl}}/{{urlPath}}/user/unblock/66a729b97241a71a60d34098
 Content-Type: application/json
 Accept: application/json
 withCredentials: true

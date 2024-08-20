@@ -15,15 +15,20 @@ import cookieSession from 'cookie-session';
 import HTTP_STATUS from 'http-status-codes';
 import { Server } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
+import apiStats from 'swagger-stats';
 import { createClient } from 'redis';
 import 'express-async-errors';
 import Logger from 'bunyan';
 import { config } from './config';
 import applicationRoutes from './routes';
-import {
-  CustomError,
-  IErrorResponse,
-} from './shared/global/helpers/error-handler';
+import { IErrorResponse, CustomError } from './shared/global/helpers/error-handler';
+import { SocketIOPostHandler } from './shared/scokets/post';
+import { SocketIOFollowerHandler } from './shared/scokets/follower';
+import { SocketIONotificationHandler } from './shared/scokets/notification';
+import { SocketIOImageHandler } from './shared/scokets/image';
+import { SocketIOChatHandler } from './shared/scokets/chat';
+import { SocketIOUserHandler } from './shared/scokets/user';
+
 
 const SERVER_PORT = 5000;
 const log: Logger = config.createLogger('server');
@@ -39,6 +44,7 @@ export class ChattyServer {
     this.securityMiddleware(this.app);
     this.standardMiddleware(this.app);
     this.routesMiddleware(this.app);
+    this.apiMonitoring(this.app);
     this.globalErrorHandler(this.app);
     this.startServer(this.app);
     this.securityMiddleware(this.app);
@@ -77,6 +83,14 @@ export class ChattyServer {
     applicationRoutes(app);
   }
 
+  private apiMonitoring(app: Application): void {
+    app.use(
+      apiStats.getMiddleware({
+        uriPath: '/api-monitoring'
+      })
+    );
+  }
+
   private globalErrorHandler(app: Application): void {
     app.all('*', (req: Request, res: Response) => {
       res
@@ -101,6 +115,9 @@ export class ChattyServer {
   }
 
   private async startServer(app: Application): Promise<void> {
+    if (!config.JWT_TOKEN) {
+      throw new Error('JWT_TOKEN must be provided');
+    }
     try {
       const httpServer: http.Server = new http.Server(app);
       const socketIO: Server = await this.createSocketIO(httpServer);
@@ -133,5 +150,19 @@ export class ChattyServer {
     });
   }
 
-  private socketIOConnections(io: Server): void {}
+  private socketIOConnections(io: Server): void {
+    const postSocketHandler: SocketIOPostHandler = new SocketIOPostHandler(io);
+    const followerSocketHandler: SocketIOFollowerHandler = new SocketIOFollowerHandler(io);
+    const userSocketHandler: SocketIOUserHandler = new SocketIOUserHandler(io);
+    const chatSocketHandler: SocketIOChatHandler = new SocketIOChatHandler(io);
+    const notificationSocketHandler: SocketIONotificationHandler = new SocketIONotificationHandler();
+    const imageSocketHandler: SocketIOImageHandler = new SocketIOImageHandler();
+
+    postSocketHandler.listen();
+    followerSocketHandler.listen();
+    userSocketHandler.listen();
+    chatSocketHandler.listen();
+    notificationSocketHandler.listen(io);
+    imageSocketHandler.listen(io);
+  }
 }
