@@ -145,7 +145,7 @@ Make sure mongodb and redis are both running on your local machine.
     - `NODE_ENV` can be set to production
     - `CLIENT_URL` can be set to the frontend application local url or actual domain
     - `API_URL` should be `https://api.dev.<your-backend-domain>` that you specified inside your terraform `variables.tf` file.
-    - `SENDGRID_API_KEY` and `SENDGRID_SENDER` should be created from sendgrid dashboard. Create an account.
+    - `SENDGRID_API_KEY` and `BREVO_SENDER` should be created from sendgrid dashboard. Create an account.
   - after updating the `.env.develop` file, you can zip it and upload it to the new s3 bucket you created to store env files. Upload using aws cli
     - `zip env-file.zip .env.develop`. The file must be called `env-file.zip`.
     - `aws --region <your-region> s3 cp env-file.zip s3://<your-s3-bucket>/backend/develop/`
