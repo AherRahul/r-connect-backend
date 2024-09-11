@@ -24,9 +24,12 @@
       { "transform": "typescript-transform-paths", "afterDeclarations": true },
     ],
     "paths": {
-    }
+      "*": ["src/types/*"]
+    },
+    "typeRoots": ["node_modules/@types", "src/types"]
   },
   "include": [
+    "src/**/*", // Adjust this path according to where you added the .d.ts file
     "src/types/sib-api-v3-sdk.d.ts",
     // ... other includes ...
   ]

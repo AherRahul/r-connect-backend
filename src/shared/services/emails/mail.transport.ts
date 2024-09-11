@@ -18,8 +18,11 @@ interface IMailOptions {
 }
 
 const log: Logger = config.createLogger('mailOptions');
+// Correctly setting the API key using ApiClient
+const apiClient = SibApiV3Sdk.ApiClient.instance;
+apiClient.authentications['api-key'].apiKey = config.BREVO_API_KEY!;
+
 const brevoClient = new SibApiV3Sdk.TransactionalEmailsApi();
-brevoClient.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, config.BREVO_API_KEY!);
 
 class MailTransport {
   public async sendEmail(receiverEmail: string, subject: string, body: string): Promise<void> {
